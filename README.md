@@ -1,3 +1,9 @@
+This release contains 52 production-usable support skills for AI coding agents working across computational chemistry, materials modeling, atomistic simulation, scientific ML, continuum modeling, electrochemistry, thermodynamics, sustainability, and related domains.
+
+All skills pass structural validation, the generated catalog indexes all 52 skills, internal cross-references are clean, and a reference/DOI audit has been completed for v0.2.
+
+The library is intended as a workflow-support and coding-assistance layer, not as an autonomous scientific decision system. Expert review, corrections, and new skill contributions remain welcome.
+
 # Deep Matter Chem Skills
 
 A production-oriented skill library for AI coding agents working in computational chemistry, materials modeling, atomistic simulation, scientific machine learning, continuum modeling, thermodynamics, sustainability, electrochemistry, and related domains.
@@ -212,7 +218,7 @@ The repository is intentionally transparent about review status.
 | Internal cross-references | Zero broken skill links               |
 | Catalog generation        | 52 skills indexed                     |
 | Expert review             | Ongoing; community review welcome     |
-| Reference and DOI audit   | Ongoing; corrections welcome          |
+| Reference and DOI audit   | Completed for v0.2; corrections still welcome         |
 | Maturity promotions       | No skills promoted beyond `draft` yet |
 
 Many skills intentionally contain `[EXPERT REVIEW NEEDED]` markers. These markers identify parameter choices, software-version details, reference-sensitive claims, and domain-specific recommendations that benefit from additional expert review.

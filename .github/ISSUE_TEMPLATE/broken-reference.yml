@@ -1,0 +1,84 @@
+name: Broken reference
+description: Report a DOI that does not resolve, a citation with a wrong title, incorrect author list, wrong year, or a reference that does not support the claim it is attached to.
+title: "[reference] <pillar>/<skill-name>: short description"
+labels: ["broken-reference", "references"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Citation and DOI metadata are part of the review surface for this project.
+        Use this template for any mismatch between what the skill claims about a reference
+        and what the actual publication says.
+
+        For errors in the scientific *content* of a skill (wrong values, broken code), use the **Skill content error** template instead.
+
+  - type: input
+    id: skill-path
+    attributes:
+      label: Skill file path
+      description: Path relative to the repository root.
+      placeholder: "skills/atomistic-md/gromacs-workflow/SKILL.md"
+    validations:
+      required: true
+
+  - type: input
+    id: reference-line
+    attributes:
+      label: Reference line (approximate)
+      description: The line number or the reference number in the Key References section.
+      placeholder: "Reference 3, line 287"
+    validations:
+      required: false
+
+  - type: textarea
+    id: current-citation
+    attributes:
+      label: Current citation (quote exactly)
+      description: Copy the exact text of the reference as it appears in the skill.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: error-type
+    attributes:
+      label: Type of mismatch
+      multiple: true
+      options:
+        - DOI does not resolve
+        - DOI resolves to a different paper
+        - Wrong title
+        - Wrong author list
+        - Wrong year
+        - Wrong journal or venue
+        - Reference does not support the claim it is attached to
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: correct-citation
+    attributes:
+      label: Correct citation or DOI
+      description: Provide the correct citation, the working DOI, or both. A direct URL to the paper landing page is also helpful.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context (optional)
+      description: |
+        If the reference is used to support a specific claim in the skill, quote the claim here
+        and describe how the reference does or does not support it.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have verified the mismatch against the actual publication (not just the DOI landing page).
+          required: true
+        - label: I have checked that this is not already reported in an open issue.
+          required: true

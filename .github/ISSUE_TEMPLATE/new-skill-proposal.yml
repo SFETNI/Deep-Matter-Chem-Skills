@@ -1,0 +1,114 @@
+name: New skill proposal
+description: Propose a skill that is not yet in the repository. Use this before starting work on a new skill to avoid duplication and confirm pillar placement.
+title: "[proposal] <pillar>/<skill-name>"
+labels: ["new-skill", "proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening this issue, check the [skill catalog](../docs/skills-catalog.md) to confirm
+        the skill does not already exist. Also read [CONTRIBUTING.md](../CONTRIBUTING.md) for the
+        minimum requirements for a `draft` skill.
+
+  - type: input
+    id: skill-name
+    attributes:
+      label: Proposed skill name
+      description: Use lowercase kebab-case. This will become the directory name under the pillar.
+      placeholder: "vasp-dielectric"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pillar
+    attributes:
+      label: Proposed pillar
+      description: Which top-level directory under `skills/` should this live in?
+      options:
+        - electronic-structure
+        - atomistic-md
+        - ml-interatomic-potentials
+        - scientific-data
+        - geometric-deep-learning
+        - surrogate-active-learning
+        - scientific-ml
+        - electrochemistry-corrosion
+        - cheminformatics
+        - thermodynamics-calphad
+        - sustainability-lca
+        - phase-field-microstructure
+        - continuum-modeling
+        - computational-chemistry
+        - generative-matter
+        - reaction-thermo
+        - New pillar (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: One-paragraph description
+      description: |
+        What does this skill cover? What tools does it use?
+        What research workflows would it enable for an AI agent?
+        What physical or mathematical assumptions define its scope?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-missing
+    attributes:
+      label: Why is this skill missing from the current catalog?
+      description: Is this a new tool, a different workflow regime, or a gap in the existing coverage?
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflows
+    attributes:
+      label: Key workflows (brief)
+      description: List 2–4 representative workflows this skill should document. These do not need to be complete yet.
+      placeholder: |
+        1. VASP dielectric constant calculation (LEPSILON=.TRUE.)
+        2. Born effective charge extraction and LO-TO splitting correction
+        3. Ionic contribution via DFPT (IBRION=8)
+    validations:
+      required: false
+
+  - type: textarea
+    id: failure-modes
+    attributes:
+      label: Known failure modes (brief)
+      description: List 2–3 common failure modes a practitioner should know about. These do not need to be complete yet.
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Primary references
+      description: List at least 3 primary sources (papers, software documentation, review articles) with DOIs or URLs.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: are-you-implementing
+    attributes:
+      label: Are you planning to implement this skill?
+      options:
+        - "Yes — I will open a PR"
+        - "Yes — but I need help"
+        - "No — this is a suggestion for others"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have checked the skill catalog and confirmed this skill does not already exist.
+          required: true
+        - label: I have read CONTRIBUTING.md and understand the draft maturity requirements.
+          required: true

@@ -1,0 +1,195 @@
+"""Generate docs/skills-catalog.md by scanning skills/**/SKILL.md."""
+
+import re
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SKILLS_DIR = REPO_ROOT / "skills"
+CATALOG_PATH = REPO_ROOT / "docs" / "skills-catalog.md"
+
+PILLARS = [
+    "electronic-structure",
+    "atomistic-md",
+    "phase-field-microstructure",
+    "continuum-modeling",
+    "thermodynamics-calphad",
+    "electrochemistry-corrosion",
+    "sustainability-lca",
+    "ml-interatomic-potentials",
+    "geometric-deep-learning",
+    "scientific-ml",
+    "surrogate-active-learning",
+    "generative-matter",
+    "cheminformatics",
+    "computational-chemistry",
+    "reaction-thermo",
+    "scientific-data",
+]
+
+
+def extract_yaml_block(text: str) -> tuple[str, bool]:
+    if not text.startswith("---"):
+        return "", False
+    end = text.find("\n---", 3)
+    if end == -1:
+        return "", False
+    return text[3:end].strip(), True
+
+
+def parse_yaml_simple(yaml_text: str) -> dict:
+    result: dict = {}
+    lines = yaml_text.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if not line.strip() or line.strip().startswith("#"):
+            i += 1
+            continue
+        if ":" in line and not line.startswith(" ") and not line.startswith("-"):
+            key, _, rest = line.partition(":")
+            key = key.strip()
+            rest = rest.strip()
+            if rest:
+                result[key] = rest
+            else:
+                items = []
+                i += 1
+                while i < len(lines) and (lines[i].startswith("  ") or lines[i].startswith("\t")):
+                    item = lines[i].strip()
+                    if item.startswith("- "):
+                        items.append(item[2:].strip())
+                    elif ":" in item:
+                        nk, _, nv = item.partition(":")
+                        if isinstance(result.get(key), dict):
+                            result[key][nk.strip()] = nv.strip().strip('"')
+                        else:
+                            result[key] = {nk.strip(): nv.strip().strip('"')}
+                    i += 1
+                if items:
+                    result[key] = items
+                continue
+        i += 1
+    return result
+
+
+def extract_description(text: str) -> str:
+    """Extract first non-empty paragraph under ## Description."""
+    in_section = False
+    lines = []
+    for line in text.splitlines():
+        if re.match(r"^##\s+Description", line):
+            in_section = True
+            continue
+        if in_section:
+            if line.startswith("##"):
+                break
+            if line.strip():
+                lines.append(line.strip())
+                if len(lines) >= 2:
+                    break
+    return " ".join(lines)
+
+
+def extract_crossrefs(text: str) -> list[str]:
+    """Extract skill names from Integration section links."""
+    in_section = False
+    refs = []
+    for line in text.splitlines():
+        if re.match(r"^##\s+Integration with Other Skills", line):
+            in_section = True
+            continue
+        if in_section:
+            if line.startswith("##"):
+                break
+            matches = re.findall(r"\[([^\]]+)\]\(([^)]+SKILL\.md)\)", line)
+            for label, _ in matches:
+                refs.append(label)
+    return refs
+
+
+def tools_str(meta: dict) -> str:
+    tools = meta.get("tools", [])
+    if isinstance(tools, list):
+        return ", ".join(tools)
+    return str(tools)
+
+
+def scan_skills() -> dict[str, list[dict]]:
+    by_pillar: dict[str, list[dict]] = {p: [] for p in PILLARS}
+    for skill_file in sorted(SKILLS_DIR.rglob("SKILL.md")):
+        parts = skill_file.relative_to(SKILLS_DIR).parts
+        if len(parts) < 2:
+            continue
+        pillar = parts[0]
+        text = skill_file.read_text(encoding="utf-8")
+        yaml_text, found = extract_yaml_block(text)
+        if not found:
+            continue
+        meta = parse_yaml_simple(yaml_text)
+        rel_path = skill_file.relative_to(REPO_ROOT).as_posix()
+        entry = {
+            "name": meta.get("name", skill_file.parent.name),
+            "domain": meta.get("domain", pillar),
+            "maturity": meta.get("maturity", "unknown"),
+            "tools": tools_str(meta),
+            "requires_gpu": meta.get("requires_gpu", "false"),
+            "estimated_runtime": meta.get("estimated_runtime", "unknown"),
+            "description": extract_description(text),
+            "crossrefs": extract_crossrefs(text),
+            "path": rel_path,
+        }
+        if pillar in by_pillar:
+            by_pillar[pillar].append(entry)
+        else:
+            by_pillar[pillar] = [entry]
+    return by_pillar
+
+
+def render_catalog(by_pillar: dict[str, list[dict]]) -> str:
+    lines = [
+        "# Skills Catalog",
+        "",
+        "Generated by `scripts/generate_catalog.py`. Do not edit by hand.",
+        "",
+        "To regenerate:",
+        "```bash",
+        "python scripts/generate_catalog.py",
+        "```",
+        "",
+        "---",
+        "",
+        "<!-- catalog-content-start -->",
+        "",
+    ]
+    for pillar in PILLARS:
+        skills = by_pillar.get(pillar, [])
+        lines.append(f"## {pillar}")
+        lines.append("")
+        if not skills:
+            lines.append("*No skills published yet.*")
+            lines.append("")
+            continue
+        lines.append("| Skill | Domain | Maturity | Tools | GPU | Runtime | Path |")
+        lines.append("|-------|--------|----------|-------|-----|---------|------|")
+        for s in skills:
+            link = f"[{s['name']}](../{s['path']})"
+            lines.append(
+                f"| {link} | {s['domain']} | {s['maturity']} | {s['tools']} "
+                f"| {s['requires_gpu']} | {s['estimated_runtime']} | {s['path']} |"
+            )
+        lines.append("")
+    lines.append("<!-- catalog-content-end -->")
+    return "\n".join(lines) + "\n"
+
+
+def main() -> None:
+    by_pillar = scan_skills()
+    total = sum(len(v) for v in by_pillar.values())
+    catalog = render_catalog(by_pillar)
+    CATALOG_PATH.write_text(catalog, encoding="utf-8")
+    print(f"Catalog written to {CATALOG_PATH} ({total} skill(s) indexed)")
+
+
+if __name__ == "__main__":
+    main()

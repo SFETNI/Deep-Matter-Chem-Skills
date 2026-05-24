@@ -1,0 +1,79 @@
+name: Skill content error
+description: Report an incorrect numerical value, wrong parameter recommendation, broken code example, or misleading claim in an existing skill.
+title: "[bug] <pillar>/<skill-name>: short description"
+labels: ["bug", "skill-content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to report errors in the scientific or technical content of an existing skill.
+        For broken DOIs or citation mismatches, use the **Broken reference** template instead.
+        For `validate_skills.py` or `check_crossrefs.py` failures, use the **Schema or validation failure** template instead.
+
+  - type: input
+    id: skill-path
+    attributes:
+      label: Skill file path
+      description: Path relative to the repository root.
+      placeholder: "skills/electronic-structure/vasp-workflow/SKILL.md"
+    validations:
+      required: true
+
+  - type: input
+    id: line-number
+    attributes:
+      label: Approximate line number or section
+      description: Section heading and line number if known.
+      placeholder: "## Common Failure Modes, line 142"
+    validations:
+      required: false
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current content (quote the exact text)
+      description: Copy the exact text that is wrong.
+      placeholder: |
+        "Use a k-mesh of 2×2×2 for metals."
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-is-wrong
+    attributes:
+      label: What is wrong
+      description: Explain clearly why the current content is incorrect or misleading.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-correction
+    attributes:
+      label: Suggested correction
+      description: Provide the corrected text or value if you know it. Include a reference or source if available.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: error-type
+    attributes:
+      label: Type of error
+      options:
+        - Wrong numerical value or threshold
+        - Incorrect tool default or API usage
+        - Broken or incorrect code example
+        - Misleading or inaccurate claim
+        - Missing failure mode
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have checked that this is not already reported in an open issue.
+          required: true
+        - label: I have read the current skill content and the error is present in the current version on `master`.
+          required: true

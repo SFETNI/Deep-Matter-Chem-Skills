@@ -1,0 +1,104 @@
+name: Expert review request
+description: Request domain-expert review of a draft skill. Use this to find a reviewer for a specific pillar or to offer your own expertise as a reviewer.
+title: "[review] <pillar>/<skill-name>"
+labels: ["expert-review", "draft"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Draft skills may contain `[EXPERT REVIEW NEEDED]` markers on numerical values, parameter
+        recommendations, or domain claims that have not been independently verified.
+
+        Use this template to:
+        - Request a reviewer for a specific draft skill, or
+        - Offer domain expertise for a pillar and ask to be assigned to a skill.
+
+        A skill with all `[EXPERT REVIEW NEEDED]` markers resolved and at least one domain-expert
+        review is a candidate for promotion to `validated`. See
+        [docs/maturity-model.md](../docs/maturity-model.md) for promotion criteria.
+
+  - type: input
+    id: skill-path
+    attributes:
+      label: Skill file path
+      description: Path relative to the repository root. Leave blank if you are offering expertise without a specific skill in mind.
+      placeholder: "skills/atomistic-md/md-force-fields/SKILL.md"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - I am requesting a reviewer for a specific skill
+        - I am offering domain expertise and asking to be assigned
+        - I have already reviewed this skill and am reporting findings
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pillar
+    attributes:
+      label: Pillar
+      description: Which technical area does this review concern?
+      options:
+        - electronic-structure
+        - atomistic-md
+        - ml-interatomic-potentials
+        - scientific-data
+        - geometric-deep-learning
+        - surrogate-active-learning
+        - scientific-ml
+        - electrochemistry-corrosion
+        - cheminformatics
+        - thermodynamics-calphad
+        - sustainability-lca
+        - phase-field-microstructure
+        - continuum-modeling
+        - computational-chemistry
+        - generative-matter
+        - reaction-thermo
+        - Multiple pillars
+    validations:
+      required: true
+
+  - type: textarea
+    id: expert-review-markers
+    attributes:
+      label: Known EXPERT REVIEW NEEDED markers (if any)
+      description: |
+        If you know which specific markers need review, list them here with their line numbers.
+        Run: `grep -n "EXPERT REVIEW NEEDED" skills/<pillar>/<skill>/SKILL.md`
+      placeholder: |
+        Line 44: RabbitMQ requirement changed across AiiDA 2.x minor versions
+        Line 121: aiida-vasp AiiDA 2.x compatibility
+    validations:
+      required: false
+
+  - type: textarea
+    id: reviewer-background
+    attributes:
+      label: Reviewer background (if offering expertise)
+      description: Briefly describe your domain expertise relevant to this pillar or skill.
+    validations:
+      required: false
+
+  - type: textarea
+    id: review-findings
+    attributes:
+      label: Review findings (if already reviewed)
+      description: |
+        If you have already reviewed the skill, summarize your findings here.
+        For each resolved marker, state the correct value and your source.
+        For each incorrect claim, quote the current text and provide the correction.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have read the skill content and the maturity model.
+          required: true

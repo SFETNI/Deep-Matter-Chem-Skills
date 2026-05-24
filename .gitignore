@@ -1,0 +1,9 @@
+
+# Claude Code worktrees
+.claude/worktrees/
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Internal planning documents
+deep-matter-chem-skills-updated-plan.md

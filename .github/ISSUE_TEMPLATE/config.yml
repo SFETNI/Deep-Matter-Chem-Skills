@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Skill catalog
+    url: https://github.com/SFETNI/Deep-Matter-Chem-Skills/blob/main/docs/skills-catalog.md
+    about: Browse all 52 current skills before opening a new-skill proposal.
+  - name: Maturity model
+    url: https://github.com/SFETNI/Deep-Matter-Chem-Skills/blob/main/docs/maturity-model.md
+    about: Understand what draft, validated, and flagship mean before requesting a review.
+  - name: Contributing guide
+    url: https://github.com/SFETNI/Deep-Matter-Chem-Skills/blob/main/CONTRIBUTING.md
+    about: Read the contribution rules before opening a PR.

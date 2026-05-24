@@ -1,0 +1,95 @@
+name: Schema or validation failure
+description: Report a failure in `scripts/validate_skills.py` or `scripts/check_crossrefs.py` that you cannot resolve, or a validator bug that produces a false positive or false negative.
+title: "[validation] <pillar>/<skill-name>: short description"
+labels: ["validation", "tooling"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when:
+        - `scripts/validate_skills.py` fails on a skill that appears to be correctly formatted
+        - `scripts/check_crossrefs.py` reports a broken link that you believe resolves correctly
+        - You believe the validator is producing a false positive or false negative
+        - You cannot determine how to fix a validation error on your own
+
+        For errors in scientific *content* (wrong values, broken code examples), use the
+        **Skill content error** template instead.
+
+  - type: dropdown
+    id: failure-type
+    attributes:
+      label: Which script is failing?
+      options:
+        - scripts/validate_skills.py
+        - scripts/check_crossrefs.py
+        - scripts/generate_catalog.py
+        - Multiple scripts
+    validations:
+      required: true
+
+  - type: input
+    id: skill-path
+    attributes:
+      label: Skill file path (if applicable)
+      description: Path relative to the repository root. Leave blank if the failure affects all skills or the tooling itself.
+      placeholder: "skills/ml-interatomic-potentials/mace-training/SKILL.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: command-run
+    attributes:
+      label: Exact command run
+      description: Paste the exact command you ran.
+      render: bash
+      placeholder: |
+        python scripts/validate_skills.py skills/ml-interatomic-potentials/mace-training/SKILL.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Full error output
+      description: Paste the complete output of the failing command.
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: failure-category
+    attributes:
+      label: Failure category
+      options:
+        - Missing required section (false positive — section exists)
+        - Broken cross-reference (false positive — file exists)
+        - Front-matter field rejected (false positive — field is present)
+        - Validator crashes with an exception
+        - Validator passes a skill that should fail (false negative)
+        - Catalog generation error
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: |
+        Anything else that helps diagnose the issue: Python version, OS, git commit hash,
+        whether the failure is reproducible on a fresh clone, etc.
+      placeholder: |
+        Python 3.11.5, Windows 11, commit acee433.
+        Reproducible on a fresh clone.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have run the command from the repository root directory.
+          required: true
+        - label: I have checked that this is not already reported in an open issue.
+          required: true

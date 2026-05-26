@@ -8,7 +8,7 @@ This is a **research workflow support library**. It is designed to support workf
 
 ---
 
-## Current Status — v0.2 Reference-Audited Production-Support Release
+## Current Status — v0.2 Reference-Audited Production-Support Release 
 
 **52 production-usable support skills** across 15 active pillars.
 

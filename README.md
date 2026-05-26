@@ -6,6 +6,8 @@ Each skill encodes domain knowledge that a coding agent needs to operate more re
 
 This is a **research workflow support library**. It is designed to support workflow design, code generation, debugging, reproducibility checks, and technical review. It is **not** an autonomous scientific decision layer and does not replace domain expertise, convergence testing, experimental validation, or final scientific judgment.
 
+![Deep Matter Chem Skills overview](docs/assets/deep-matter-chem-skills-overview.png)
+
 ---
 
 ## Current Status — v0.2 Reference-Audited Production-Support Release 
@@ -83,6 +85,8 @@ done
 ## How to Use These Skills with AI Coding Agents
 
 Skills are plain Markdown files. Use them by loading the relevant `SKILL.md` files into the context of Claude Code, Codex, or another coding agent before asking the agent to generate, review, or debug workflow code.
+
+![Use a skill in 3 steps](docs/assets/use-a-skill-in-3-steps.png)
 
 ### Claude Code
 

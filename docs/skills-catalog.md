@@ -51,6 +51,7 @@ python scripts/generate_catalog.py
 
 | Skill | Domain | Maturity | Tools | GPU | Runtime | Path |
 |-------|--------|----------|-------|-----|---------|------|
+| [crystal-plasticity-workflow](../skills/continuum-modeling/crystal-plasticity-workflow/SKILL.md) | continuum-modeling | draft | DAMASK, MFront, Abaqus, MOOSE, gmsh, orix, numpy, scipy, matplotlib | false | hours-to-weeks | skills/continuum-modeling/crystal-plasticity-workflow/SKILL.md |
 | [fem-multiphysics](../skills/continuum-modeling/fem-multiphysics/SKILL.md) | continuum-modeling | draft | FEniCSx, FEniCS, MOOSE, deal.II, COMSOL, gmsh, ParaView, numpy, matplotlib | false | hours-to-weeks | skills/continuum-modeling/fem-multiphysics/SKILL.md |
 
 ## thermodynamics-calphad
@@ -120,6 +121,7 @@ python scripts/generate_catalog.py
 |-------|--------|----------|-------|-----|---------|------|
 | [molecular-datasets](../skills/cheminformatics/molecular-datasets/SKILL.md) | cheminformatics | draft | RDKit, pandas, numpy, scikit-learn, DeepChem, matplotlib | false | minutes-to-hours | skills/cheminformatics/molecular-datasets/SKILL.md |
 | [molecular-featurization](../skills/cheminformatics/molecular-featurization/SKILL.md) | cheminformatics | draft | RDKit, pandas, numpy, scikit-learn, mordred, matplotlib | false | minutes-to-hours | skills/cheminformatics/molecular-featurization/SKILL.md |
+| [smiles-smarts-workflow](../skills/cheminformatics/smiles-smarts-workflow/SKILL.md) | cheminformatics | draft | RDKit, openbabel, pandas, numpy | false | seconds-to-minutes | skills/cheminformatics/smiles-smarts-workflow/SKILL.md |
 
 ## computational-chemistry
 

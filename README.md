@@ -20,7 +20,7 @@ Each skill captures method assumptions, selection guidance, practical workflows,
 <!-- repository-status-start -->
 | Current catalog | Active pillars | Browse |
 |:---:|:---:|:---:|
-| **55 skills** | **15 pillars** | **[Open the generated catalog](docs/skills-catalog.md)** |
+| **57 skills** | **15 pillars** | **[Open the generated catalog](docs/skills-catalog.md)** |
 <!-- repository-status-end -->
 
 **Latest reference-audited release:** v0.2, containing 52 production-usable support skills.
@@ -166,7 +166,7 @@ The skills support reasoning, implementation, review, and diagnostics. They do n
 | `thermodynamics-calphad`     |      1 | CALPHAD workflows                                                                                                  |
 | `sustainability-lca`         |      1 | Materials life-cycle assessment                                                                                    |
 | `phase-field-microstructure` |      1 | Cahn-Hilliard and Allen-Cahn workflows with FiPy                                                                   |
-| `continuum-modeling`         |      3 | FEM multiphysics                                                                                                   |
+| `continuum-modeling`         |      5 | FEM multiphysics                                                                                                   |
 | `computational-chemistry`    |      1 | Molecular quantum chemistry workflows with ORCA, xTB, TDDFT                                                       |
 | `generative-matter`          |      1 | Crystal diffusion generative models, including MatterGen and DiffCSP                                               |
 

@@ -1,48 +1,50 @@
 # Deep Matter Chem Skills
 
-A production-oriented skill library for AI coding agents working in computational chemistry, materials modeling, atomistic simulation, scientific machine learning, continuum modeling, thermodynamics, sustainability, electrochemistry, and related domains.
+A production-oriented library of domain-grounded skills for AI coding agents working across computational chemistry, materials science, atomistic simulation, scientific machine learning, continuum modeling, and related research domains.
 
-Each skill encodes domain knowledge that a coding agent needs to operate more reliably in a technical workflow: what physical assumptions a method requires, when to use it, when not to use it, how to diagnose common failures, and how it connects to adjacent workflows.
+Each skill captures method assumptions, selection guidance, practical workflows, failure diagnostics, validation requirements, and connections to adjacent skills.
 
-This is a **research workflow support library**. It is designed to support workflow design, code generation, debugging, reproducibility checks, and technical review. It is **not** an autonomous scientific decision layer and does not replace domain expertise, convergence testing, experimental validation, or final scientific judgment.
-
-![Deep Matter Chem Skills overview](docs/assets/deep-matter-chem-skills-overview.png)
+![Deep Matter Chem Skills overview](docs/assets/deep-matter-chem-skills-overview-timeless.png)
 
 ---
 
-## Current Status — v0.2 Reference-Audited Production-Support Release 
+<p align="center">
+  <a href="docs/skills-catalog.md"><strong>Browse Skills</strong></a> &nbsp;&bull;&nbsp;
+  <a href="#quickstart"><strong>Quickstart</strong></a> &nbsp;&bull;&nbsp;
+  <a href="#how-to-use-these-skills-with-ai-coding-agents"><strong>Use with AI Agents</strong></a> &nbsp;&bull;&nbsp;
+  <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
+</p>
 
-**52 production-usable support skills** across 15 active pillars.
+## Repository at a Glance
 
-Current repository checks:
+<!-- repository-status-start -->
+| Current catalog | Active pillars | Browse |
+|:---:|:---:|:---:|
+| **55 skills** | **15 pillars** | **[Open the generated catalog](docs/skills-catalog.md)** |
+<!-- repository-status-end -->
 
-- **52 skills** indexed in the generated catalog.
-- **All skills pass structural validation** with `scripts/validate_skills.py`.
-- **Zero broken internal cross-references** with `scripts/check_crossrefs.py`.
-- **Reference and DOI audit completed** — all ~230 references checked across 52 skills; 8 wrong DOIs corrected, 4 metadata fields corrected.
-- **GitHub issue templates and PR checklist are available** for community review and contribution.
-- **Longer-term roadmap:** approximately 100+ skills across additional technical domains.
+**Latest reference-audited release:** v0.2, containing 52 production-usable support skills.
 
-### Two distinct quality tiers
+| Repository check | Status |
+|---|---|
+| Structural validation | Passing for the current catalog |
+| Internal cross-references | Zero broken skill links |
+| Reference and DOI audit | Completed for the 52-skill v0.2 release snapshot |
+| Expert review | Ongoing; all skills currently remain at `draft` maturity |
+
+> This library supports scientific workflow design, implementation, debugging, and review. It does not replace domain expertise, convergence testing, experimental validation, or final scientific judgment.
+
+<details>
+<summary><strong>Quality tiers and maturity labels</strong></summary>
 
 | Term | Meaning |
 |---|---|
-| **production-usable support skill** | Structurally complete, reference-audited, cross-reference clean, and usable with Claude Code, Codex, or manual workflows. Internal maturity: `draft`. |
-| **validated skill** | Independently reviewed by a domain expert for scientific content and promoted beyond `draft`. No skills have reached this tier yet — community review is open. |
+| **production-usable support skill** | Structurally complete, internally linked, and ready to support Claude Code, Codex, or manual workflows. |
+| **validated skill** | Independently reviewed by a domain expert and promoted beyond `draft`. No skills have reached this tier yet. |
 
-### What "production-usable support skill" means in practice
+The current `draft` tier means required sections, metadata, workflows, failure modes, and references are present, while independent expert review remains open. `[EXPERT REVIEW NEEDED]` markers identify claims that require additional scrutiny.
 
-A skill is considered production-usable when it is structurally complete, internally consistent, reference-audited, cross-linked to existing relevant skills, and ready to load into Claude Code, Codex, or another coding-agent workflow.
-
-This does **not** mean every technical claim has completed independent expert review. Internal maturity labels and `[EXPERT REVIEW NEEDED]` markers are used to make review status explicit.
-
-In practical terms:
-
-- Skills are ready to support workflow generation, code review, diagnostics, and reproducibility scaffolding.
-- Skills provide structured domain guidance, not final scientific authority.
-- Technical claims involving thresholds, software-version behavior, parameter choices, or contested best practices may still require specialist review.
-- Skills do not replace expert judgment, convergence testing, experimental validation, or final scientific decisions.
-- Contributors are encouraged to report reference issues, correct parameter guidance, and request domain review.
+</details>
 
 ---
 
@@ -160,11 +162,11 @@ The skills support reasoning, implementation, review, and diagnostics. They do n
 | `surrogate-active-learning`  |      3 | Gaussian processes, Bayesian optimization, surrogate validation                                                    |
 | `scientific-ml`              |      2 | PINNs, small-data ML                                                                                               |
 | `electrochemistry-corrosion` |      2 | Battery materials workflows, corrosion and electrochemistry                                                        |
-| `cheminformatics`            |      2 | Molecular featurization, molecular datasets                                                                        |
+| `cheminformatics`            |      3 | Molecular featurization, molecular datasets                                                                        |
 | `thermodynamics-calphad`     |      1 | CALPHAD workflows                                                                                                  |
 | `sustainability-lca`         |      1 | Materials life-cycle assessment                                                                                    |
 | `phase-field-microstructure` |      1 | Cahn-Hilliard and Allen-Cahn workflows with FiPy                                                                   |
-| `continuum-modeling`         |      1 | FEM multiphysics                                                                                                   |
+| `continuum-modeling`         |      3 | FEM multiphysics                                                                                                   |
 | `computational-chemistry`    |      1 | Molecular quantum chemistry workflows with ORCA, xTB, TDDFT                                                       |
 | `generative-matter`          |      1 | Crystal diffusion generative models, including MatterGen and DiffCSP                                               |
 
@@ -212,9 +214,9 @@ The repository is intentionally transparent about review status.
 
 | Review surface            | Current status                        |
 | ------------------------- | ------------------------------------- |
-| Structural validation     | Passing for all 52 skills             |
+| Structural validation     | Passing for the current catalog       |
 | Internal cross-references | Zero broken skill links               |
-| Catalog generation        | 52 skills indexed                     |
+| Catalog generation        | Generated from the current skill tree |
 | Expert review             | Ongoing; community review welcome     |
 | Reference and DOI audit   | Completed for v0.2; corrections still welcome         |
 | Maturity promotions       | No skills promoted beyond `draft` yet |
@@ -268,7 +270,7 @@ Useful reports include:
 
 ## Roadmap
 
-The current release contains 52 skills. The longer-term roadmap targets approximately 100+ skills across additional computational and materials-science domains.
+The v0.2 reference-audited release contains 52 skills. Development continues beyond that release snapshot, and the longer-term roadmap targets approximately 100+ skills across additional computational and materials-science domains.
 
 Priority expansion areas include:
 

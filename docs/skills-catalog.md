@@ -52,6 +52,7 @@ python scripts/generate_catalog.py
 | Skill | Domain | Maturity | Tools | GPU | Runtime | Path |
 |-------|--------|----------|-------|-----|---------|------|
 | [crystal-plasticity-workflow](../skills/continuum-modeling/crystal-plasticity-workflow/SKILL.md) | continuum-modeling | draft | DAMASK, MFront, Abaqus, MOOSE, gmsh, orix, numpy, scipy, matplotlib | false | hours-to-weeks | skills/continuum-modeling/crystal-plasticity-workflow/SKILL.md |
+| [fatigue-analysis-workflow](../skills/continuum-modeling/fatigue-analysis-workflow/SKILL.md) | continuum-modeling | draft | Python, NumPy, SciPy, pandas, matplotlib, Abaqus, ANSYS Mechanical, CalculiX, DAMASK, MFront | false | minutes-to-weeks | skills/continuum-modeling/fatigue-analysis-workflow/SKILL.md |
 | [fem-multiphysics](../skills/continuum-modeling/fem-multiphysics/SKILL.md) | continuum-modeling | draft | FEniCSx, FEniCS, MOOSE, deal.II, COMSOL, gmsh, ParaView, numpy, matplotlib | false | hours-to-weeks | skills/continuum-modeling/fem-multiphysics/SKILL.md |
 
 ## thermodynamics-calphad

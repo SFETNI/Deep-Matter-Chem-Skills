@@ -7,6 +7,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = REPO_ROOT / "skills"
 CATALOG_PATH = REPO_ROOT / "docs" / "skills-catalog.md"
+README_PATH = REPO_ROOT / "README.md"
+README_STATUS_START = "<!-- repository-status-start -->"
+README_STATUS_END = "<!-- repository-status-end -->"
 
 PILLARS = [
     "electronic-structure",
@@ -183,11 +186,50 @@ def render_catalog(by_pillar: dict[str, list[dict]]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def update_readme_status(by_pillar: dict[str, list[dict]]) -> None:
+    """Update only the generated live repository status in README.md."""
+    total = sum(len(skills) for skills in by_pillar.values())
+    active_pillars = sum(bool(skills) for skills in by_pillar.values())
+    original_readme = README_PATH.read_text(encoding="utf-8")
+    readme = original_readme
+
+    for pillar, skills in by_pillar.items():
+        if not skills:
+            continue
+        pattern = rf"(\| `{re.escape(pillar)}`\s+\|)\s+\d+(\s+\|)"
+        readme, replacements = re.subn(
+            pattern,
+            rf"\g<1>{len(skills):7d}\g<2>",
+            readme,
+            count=1,
+        )
+        if replacements != 1:
+            raise RuntimeError(f"README pillar row missing for {pillar}")
+
+    start = readme.find(README_STATUS_START)
+    end = readme.find(README_STATUS_END)
+    if start == -1 or end == -1 or end < start:
+        raise RuntimeError("README generated-status markers are missing or out of order")
+
+    generated = (
+        f"{README_STATUS_START}\n"
+        "| Current catalog | Active pillars | Browse |\n"
+        "|:---:|:---:|:---:|\n"
+        f"| **{total} skills** | **{active_pillars} pillars** | "
+        "**[Open the generated catalog](docs/skills-catalog.md)** |\n"
+        f"{README_STATUS_END}"
+    )
+    updated = readme[:start] + generated + readme[end + len(README_STATUS_END) :]
+    if updated != original_readme:
+        README_PATH.write_text(updated, encoding="utf-8")
+
+
 def main() -> None:
     by_pillar = scan_skills()
     total = sum(len(v) for v in by_pillar.values())
     catalog = render_catalog(by_pillar)
     CATALOG_PATH.write_text(catalog, encoding="utf-8")
+    update_readme_status(by_pillar)
     print(f"Catalog written to {CATALOG_PATH} ({total} skill(s) indexed)")
 
 

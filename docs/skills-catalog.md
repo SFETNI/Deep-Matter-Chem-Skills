@@ -45,7 +45,10 @@ python scripts/generate_catalog.py
 
 | Skill | Domain | Maturity | Tools | GPU | Runtime | Path |
 |-------|--------|----------|-------|-----|---------|------|
+| [neural-microstructure-validation](../skills/phase-field-microstructure/neural-microstructure-validation/SKILL.md) | phase-field-microstructure | draft | numpy, scipy, scikit-image, pandas, matplotlib | false | minutes-to-hours | skills/phase-field-microstructure/neural-microstructure-validation/SKILL.md |
 | [phase-field-workflow](../skills/phase-field-microstructure/phase-field-workflow/SKILL.md) | phase-field-microstructure | draft | MOOSE, FiPy, PRISMS-PF, pycalphad, numpy, scipy, matplotlib, ParaView | false | hours-to-weeks | skills/phase-field-microstructure/phase-field-workflow/SKILL.md |
+| [pinn-phase-neural-integrator](../skills/phase-field-microstructure/pinn-phase-neural-integrator/SKILL.md) | phase-field-microstructure | draft | PINN-Phase, PyTorch, numpy, scipy | true | hours-to-days | skills/phase-field-microstructure/pinn-phase-neural-integrator/SKILL.md |
+| [pinns-mpf-workflow](../skills/phase-field-microstructure/pinns-mpf-workflow/SKILL.md) | phase-field-microstructure | draft | PINNs-MPF, TensorFlow, SciPy, numpy, matplotlib | false | hours-to-days | skills/phase-field-microstructure/pinns-mpf-workflow/SKILL.md |
 
 ## continuum-modeling
 
@@ -83,6 +86,7 @@ python scripts/generate_catalog.py
 | [active-learning-mlp](../skills/ml-interatomic-potentials/active-learning-mlp/SKILL.md) | ml-interatomic-potentials | draft | MACE, LAMMPS, VASP, Quantum ESPRESSO, ASE, PyTorch | true | days-to-weeks | skills/ml-interatomic-potentials/active-learning-mlp/SKILL.md |
 | [fine-tuning-mlp](../skills/ml-interatomic-potentials/fine-tuning-mlp/SKILL.md) | ml-interatomic-potentials | draft | MACE, ASE, PyTorch, VASP, Quantum ESPRESSO | true | hours-to-days | skills/ml-interatomic-potentials/fine-tuning-mlp/SKILL.md |
 | [mace-training](../skills/ml-interatomic-potentials/mace-training/SKILL.md) | ml-interatomic-potentials | draft | MACE, ASE, PyTorch, VASP, Quantum ESPRESSO, LAMMPS | true | hours-to-days | skills/ml-interatomic-potentials/mace-training/SKILL.md |
+| [mattersim-workflow](../skills/ml-interatomic-potentials/mattersim-workflow/SKILL.md) | ml-interatomic-potentials | draft | MatterSim, ASE, phonopy, pymatgen, PyTorch | false | minutes-to-hours | skills/ml-interatomic-potentials/mattersim-workflow/SKILL.md |
 | [mlp-to-lammps](../skills/ml-interatomic-potentials/mlp-to-lammps/SKILL.md) | ml-interatomic-potentials | draft | MACE, LAMMPS, NequIP, DeePMD-kit, ASE, PyTorch | false | minutes-to-hours | skills/ml-interatomic-potentials/mlp-to-lammps/SKILL.md |
 | [mlp-validation](../skills/ml-interatomic-potentials/mlp-validation/SKILL.md) | ml-interatomic-potentials | draft | MACE, ASE, LAMMPS, phonopy, pymatgen, matplotlib | false | hours-to-days | skills/ml-interatomic-potentials/mlp-validation/SKILL.md |
 | [nequip-training](../skills/ml-interatomic-potentials/nequip-training/SKILL.md) | ml-interatomic-potentials | draft | NequIP, Allegro, e3nn, ASE, PyTorch, LAMMPS, numpy, matplotlib | true | hours-to-days | skills/ml-interatomic-potentials/nequip-training/SKILL.md |
@@ -110,13 +114,17 @@ python scripts/generate_catalog.py
 |-------|--------|----------|-------|-----|---------|------|
 | [bayesian-optimization](../skills/surrogate-active-learning/bayesian-optimization/SKILL.md) | surrogate-active-learning | draft | BoTorch, Ax, GPyTorch, scikit-learn, numpy, pandas, matplotlib | false | minutes-to-hours | skills/surrogate-active-learning/bayesian-optimization/SKILL.md |
 | [gaussian-process-materials](../skills/surrogate-active-learning/gaussian-process-materials/SKILL.md) | surrogate-active-learning | draft | scikit-learn, GPyTorch, BoTorch, GPflow, pymatgen, matminer | false | minutes-to-hours | skills/surrogate-active-learning/gaussian-process-materials/SKILL.md |
+| [gnome-materials-discovery](../skills/surrogate-active-learning/gnome-materials-discovery/SKILL.md) | surrogate-active-learning | draft | GNoME (google-deepmind/materials_discovery), JAX, pymatgen, VASP, numpy, pandas | true | days-to-weeks | skills/surrogate-active-learning/gnome-materials-discovery/SKILL.md |
+| [materials-discovery-closed-loop](../skills/surrogate-active-learning/materials-discovery-closed-loop/SKILL.md) | surrogate-active-learning | draft | numpy, pandas, scipy, pymatgen, MatterGen, MatterSim | false | days-to-weeks | skills/surrogate-active-learning/materials-discovery-closed-loop/SKILL.md |
 | [surrogate-validation](../skills/surrogate-active-learning/surrogate-validation/SKILL.md) | surrogate-active-learning | draft | scikit-learn, pandas, numpy, matplotlib, scipy, pymatgen | false | minutes-to-hours | skills/surrogate-active-learning/surrogate-validation/SKILL.md |
 
 ## generative-matter
 
 | Skill | Domain | Maturity | Tools | GPU | Runtime | Path |
 |-------|--------|----------|-------|-----|---------|------|
+| [crystal-candidate-validation](../skills/generative-matter/crystal-candidate-validation/SKILL.md) | generative-matter | draft | pymatgen, spglib, phonopy, ASE, numpy, scipy | false | minutes-to-days | skills/generative-matter/crystal-candidate-validation/SKILL.md |
 | [crystal-diffusion](../skills/generative-matter/crystal-diffusion/SKILL.md) | generative-matter | draft | MatterGen, DiffCSP, pymatgen, ASE, torch | true | "minutes-to-days (generation: minutes; training: hours–days)" | skills/generative-matter/crystal-diffusion/SKILL.md |
+| [mattergen-inverse-design](../skills/generative-matter/mattergen-inverse-design/SKILL.md) | generative-matter | draft | MatterGen, MatterSim, pymatgen, PyTorch, pandas | true | hours-to-days | skills/generative-matter/mattergen-inverse-design/SKILL.md |
 
 ## cheminformatics
 

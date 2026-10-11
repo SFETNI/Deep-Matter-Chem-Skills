@@ -20,7 +20,7 @@ Each skill captures method assumptions, selection guidance, practical workflows,
 <!-- repository-status-start -->
 | Current catalog | Active pillars | Browse |
 |:---:|:---:|:---:|
-| **57 skills** | **15 pillars** | **[Open the generated catalog](docs/skills-catalog.md)** |
+| **65 skills** | **15 pillars** | **[Open the generated catalog](docs/skills-catalog.md)** |
 <!-- repository-status-end -->
 
 **Latest reference-audited release:** v0.2, containing 52 production-usable support skills.
@@ -156,19 +156,19 @@ The skills support reasoning, implementation, review, and diagnostics. They do n
 | ---------------------------- | -----: | ------------------------------------------------------------------------------------------------------------------ |
 | `electronic-structure`       |     11 | VASP, Quantum ESPRESSO, CP2K, AiiDA, DFT convergence, phonons, surfaces, defects, high-throughput DFT, EOS fitting |
 | `atomistic-md`               |      9 | GROMACS, LAMMPS, force fields, equilibration, free energy, enhanced sampling, coarse-grained MD, reactive MD       |
-| `ml-interatomic-potentials`  |      8 | MACE, NequIP, universal potentials, fine-tuning, active learning, validation, uncertainty, LAMMPS deployment       |
+| `ml-interatomic-potentials`  |      9 | MACE, NequIP, universal potentials, fine-tuning, active learning, validation, uncertainty, LAMMPS deployment       |
 | `scientific-data`            |      6 | ASE, pymatgen, materials databases, featurization, visualization, reproducibility                                  |
 | `geometric-deep-learning`    |      3 | Crystal GNNs, molecular GNNs, MatGL/M3GNet                                                                        |
-| `surrogate-active-learning`  |      3 | Gaussian processes, Bayesian optimization, surrogate validation                                                    |
+| `surrogate-active-learning`  |      5 | Gaussian processes, Bayesian optimization, surrogate validation                                                    |
 | `scientific-ml`              |      2 | PINNs, small-data ML                                                                                               |
 | `electrochemistry-corrosion` |      2 | Battery materials workflows, corrosion and electrochemistry                                                        |
 | `cheminformatics`            |      3 | Molecular featurization, molecular datasets                                                                        |
 | `thermodynamics-calphad`     |      1 | CALPHAD workflows                                                                                                  |
 | `sustainability-lca`         |      1 | Materials life-cycle assessment                                                                                    |
-| `phase-field-microstructure` |      1 | Cahn-Hilliard and Allen-Cahn workflows with FiPy                                                                   |
+| `phase-field-microstructure` |      4 | Cahn-Hilliard and Allen-Cahn workflows with FiPy                                                                   |
 | `continuum-modeling`         |      5 | FEM multiphysics                                                                                                   |
 | `computational-chemistry`    |      1 | Molecular quantum chemistry workflows with ORCA, xTB, TDDFT                                                       |
-| `generative-matter`          |      1 | Crystal diffusion generative models, including MatterGen and DiffCSP                                               |
+| `generative-matter`          |      3 | Crystal diffusion generative models, including MatterGen and DiffCSP                                               |
 
 ---
 
